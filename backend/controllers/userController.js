@@ -1,6 +1,4 @@
 const User = require("../models/UserModel");
-const AuthService = require("../service/auth");
-const TaskService = require("../service/task");
 const bcrypt = require("bcrypt");
 
 const userController = {
