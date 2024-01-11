@@ -16,7 +16,10 @@ const UserSchema = new mongoose.Schema({
   password: { type: String },
   personalInfo: personalInfoSchema,
   tasks: [],
-  isDeleted: Boolean,
+  isDeleted: { 
+    type:Boolean,
+    default: false
+   },
   encodedDate: {
     type: Number,
     default: (new Date()).getTime()

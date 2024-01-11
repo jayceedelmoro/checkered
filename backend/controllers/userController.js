@@ -97,9 +97,7 @@ const userController = {
         ]
     });
 
-      const newUser = new User({...request.body, isDeleted: false});
-
-      console.log(user)
+      const newUser = new User(request.body);
 
       const status = user ? 403 : 200;
       const message = user
