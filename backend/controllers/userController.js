@@ -1,46 +1,18 @@
 const User = require("../models/UserModel");
+const controllerServices = require("../services/controllerServices");
 const bcrypt = require("bcrypt");
 
 const userController = {
   getUserById: async (request, response) => {
-    try {
-      const { userId } = request.params;
-      const user = await User.findById(userId);
-
-      const status = user ? 200 : 404;
-      const message = user
-        ? user
-        : "User Does Not Exist";
-
-      return response.status(status).json({ message: message });
-    } catch (error) {
-      console.error(error);
-      return response.status(500).json({ message: "Internal server error" });
-    }
+    controllerServices.getDataById(request, response, User);
   },
 
   changeUserInfo: async (request, response) => {
-    try {
-      const { userId } = request.params;
+      controllerServices.changeInfo(request, response, User);
+  },
 
-      const user = await User.findByIdAndUpdate(
-        userId,
-        request.body,
-        {
-            new: true
-        }
-      );
-
-      const status = user ? 200 : 404;
-      const message = user
-        ? "Update Success"
-        : "User Does Not Exist";
-
-      return response.status(status).json({ message: message });
-    } catch (error) {
-      console.error(error);
-      return response.status(500).json({ message: "Internal server error" });
-    }
+  deleteAUser: async (request, response) => {
+    controllerServices.deleteData(request, response, User);
   },
 
   changePassword: async (request, response) => {
@@ -58,25 +30,6 @@ const userController = {
       const message = user
         ? "Password Updated"
         : "Server Error";
-
-      return response.status(status).json({ message: message });
-    } catch (error) {
-      console.error(error);
-      return response.status(500).json({ message: "Internal server error" });
-    }
-  },
-
-  deleteAUser: async (request, response) => {
-    try {
-      const { userId } = request.params;
-      const user = await User.findById(userId);
-
-      await User.findOneAndUpdate({ _id: userId }, { isDeleted: true });
-
-      const status = user ? 200 : 404;
-      const message = user
-        ? "User deleted"
-        : "User Does Not Exist";
 
       return response.status(status).json({ message: message });
     } catch (error) {
