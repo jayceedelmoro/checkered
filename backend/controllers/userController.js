@@ -87,23 +87,31 @@ const userController = {
 
   addNewUser: async (request, response) => {
     try {
-      const newDocument = new User(request.body);
+      const { username } = request.body
+      const { emailAddress } = request.body.personalInfo
 
-      const savedUser = await newDocument.save();
+      const user = await User.findOne({ 
+        $or: [
+            {username},
+            {emailAddress}
+        ]
+    });
 
-      const authService = new AuthService();
-      await authService.addAccess(savedUser.id, ["STUDENT"]);
+      const newUser = new User({...request.body, isDeleted: false});
 
-      const taskService = new TaskService();
-      await taskService.createInitialTask(
-        savedUser.id,
-        savedUser.sponsorsSectionData.sponsors
-      );
+      console.log(user)
 
-      response.status(201).json({ message: "Document saved successfully" });
+      const status = user ? 403 : 200;
+      const message = user
+      ? "User already exist"
+      : "New User saved successfully";
+
+      const savedUser = user ? null : await newUser.save();
+
+      return response.status(status).json({ message: message });
     } catch (error) {
       console.error(error);
-      response.status(500).json({ message: "Internal server error" });
+      return response.status(500).json({ message: "Internal server error" });
     }
   },
 };
