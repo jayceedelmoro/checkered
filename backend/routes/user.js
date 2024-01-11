@@ -12,7 +12,7 @@ router.get('/:id', userController.getUserById);
 //POST REQUESTS
 
 // create a new user record
-// api/v1/users/addNewScholar
+// api/v1/users/register
 router.post('/register', userController.addNewUser)
 
 // PUT REQUESTS
