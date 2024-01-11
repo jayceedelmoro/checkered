@@ -6,8 +6,8 @@ const userController = require('../controllers/userController');
 // GET REQUESTS
 
 // get a specific users
-// api/v1/users/:userId
-router.get('/:userId', userController.getUserById);
+// api/v1/users/:id
+router.get('/:id', userController.getUserById);
 
 //POST REQUESTS
 
@@ -18,18 +18,18 @@ router.post('/register', userController.addNewUser)
 // PUT REQUESTS
 
 // change user info
-// api/v1/users/:userId
-router.put('/:userId', userController.changeUserInfo);
+// api/v1/users/:id
+router.put('/:id', userController.changeUserInfo);
 
 // change user password
-// api/v1/users/:userId/password
-router.put('/:userId/password', userController.changePassword);
+// api/v1/users/:id/password
+router.put('/:id/password', userController.changePassword);
 
 
 // DELETE REQUEST
 
 // soft delete user by id
-// api/v1/users/:userId
-router.delete( '/:userId', userController.deleteAUser);
+// api/v1/users/:id
+router.delete( '/:id', userController.deleteAUser);
 
 module.exports = router;
