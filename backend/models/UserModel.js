@@ -15,6 +15,7 @@ const UserSchema = new mongoose.Schema({
   userId: String,
   password: { type: String },
   personalInfo: personalInfoSchema,
+  tasks: [],
   isDeleted: Boolean,
   encodedDate: {
     type: Number,
