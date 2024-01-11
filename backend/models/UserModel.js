@@ -12,7 +12,7 @@ const personalInfoSchema = new mongoose.Schema(
 );
 
 const UserSchema = new mongoose.Schema({
-  userId: String,
+  username: String,
   password: { type: String },
   personalInfo: personalInfoSchema,
   tasks: [],
