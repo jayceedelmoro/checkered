@@ -8,6 +8,18 @@ const toTitleCase = (str) => {
 }
 
 const controllerServices = {
+  getAllData: async (request, response, model) => {
+    try {
+      const modelName = model.collection.collectionName
+      const result = await model.find();
+
+      return response.status(200).json({ message: result });
+    } catch (error) {
+      console.error(error);
+      return response.status(500).json({ message: "Internal server error" });
+    }
+  },
+
   getDataById: async (request, response, model) => {
     try {
       const { id } = request.params;
@@ -51,12 +63,31 @@ const controllerServices = {
     }
   },
 
-  deleteData: async (request, response, model) => {
+  softDeleteData: async (request, response, model) => {
     try {
       const { id } = request.params;
       const modelName = model.collection.collectionName
 
       const result = await model.findOneAndUpdate({ _id: id }, { isDeleted: true });
+
+      const status = result ? 200 : 404;
+      const message = result
+        ? `${ toTitleCase(modelName) } deleted`
+        : `${ toTitleCase(modelName) } Does Not Exist`;
+
+      return response.status(status).json({ message: message });
+    } catch (error) {
+      console.error(error);
+      return response.status(500).json({ message: "Internal server error" });
+    }
+  },
+
+  deleteData: async (request, response, model) => {
+    try {
+      const { id } = request.params;
+      const modelName = model.collection.collectionName
+
+      const result = await model.findOneAndDelete(id);
 
       const status = result ? 200 : 404;
       const message = result
