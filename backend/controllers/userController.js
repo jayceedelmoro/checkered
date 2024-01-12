@@ -3,6 +3,9 @@ const controllerServices = require("../services/controllerServices");
 const bcrypt = require("bcrypt");
 
 const userController = {
+  getAllUser: async (request, response) => {
+    controllerServices.getAllData(request, response, User);
+  },
   getUserById: async (request, response) => {
     controllerServices.getDataById(request, response, User);
   },
@@ -12,7 +15,7 @@ const userController = {
   },
 
   deleteAUser: async (request, response) => {
-    controllerServices.deleteData(request, response, User);
+    controllerServices.softDeleteData(request, response, User);
   },
 
   changePassword: async (request, response) => {

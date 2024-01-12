@@ -5,7 +5,11 @@ const userController = require('../controllers/userController');
 
 // GET REQUESTS
 
-// get a specific users
+// get all users
+// api/v1/users/
+router.get('/', userController.getAllUser);
+
+// get a specific user
 // api/v1/users/:id
 router.get('/:id', userController.getUserById);
 
