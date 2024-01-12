@@ -25,8 +25,10 @@ app.use( morgan('dev') );
 
 //Routes
 const UserRoutes = require('./routes/user');
+const TaskRoutes = require('./routes/task');
 
 app.use( `${baseURL}/users`, UserRoutes );
+app.use( `${baseURL}/tasks`, TaskRoutes );
 
 app.get('/', ( request, response ) => {
     response.status(200).send( `` );
