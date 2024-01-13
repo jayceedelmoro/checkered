@@ -14,7 +14,7 @@ mongoose.connect(process.env.MONGDB_URI);
 const app = express();
 
 app.use(cors({
-    origin: ["http://localhost:3006", "https://checkered.onrender.com"],
+    origin: ["http://localhost:3000", "https://checkered.onrender.com"],
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     credentials: true
 }));
