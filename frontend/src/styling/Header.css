@@ -1,0 +1,20 @@
+.navbar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: var(--main-color);
+    padding: 20px;
+}
+
+.navbar-container > * {
+    width: 100%;
+}
+
+.username {
+    color: var(--white);
+    font-size: 20px;
+    text-transform: uppercase;
+    text-align: right;
+    margin: 0;
+}
