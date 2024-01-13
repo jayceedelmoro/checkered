@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useNavigate } from "react-router-dom";
+
 import axios from 'axios'
 
 import { toast } from 'react-toastify';
@@ -6,6 +8,8 @@ import { toast } from 'react-toastify';
 import '../styling/Login.css'
 
 const LoginPage = () => {
+
+    const navigate = useNavigate();
 
     const [pageDisplay, setPageDisplay] = useState( 'login' );
 
@@ -26,7 +30,35 @@ const LoginPage = () => {
         setPageDisplay( e.target.value )
     }
 
-    const loginHandler = () => {
+    const loginHandler = (e) => {
+        e.preventDefault()
+
+        const loading = toast.loading("Please wait...")
+
+        axios.post(`${ process.env.REACT_APP_SITE_LINK }/api/v1/users/login`, { username: state.username, password: state.password } ).then(dbResponse => {
+        
+            localStorage.setItem('userId', dbResponse.data.userId);
+            console.log(dbResponse.data)
+                
+            toast.update(
+                loading, {
+                    render: dbResponse.data.message,
+                    type: "success",
+                    isLoading: false,
+                    autoClose: 1000,
+                }
+            );
+            
+            setInterval(() => {
+                navigate('/dashboard');
+            }, 2000);
+    
+        })
+        .catch(error => {
+            toast.error(error.response.data.message, {
+                autoClose: 1000,
+            });
+        })
 
     }
 
