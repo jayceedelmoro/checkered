@@ -78,8 +78,12 @@ button {
     color: var(--main-color);
     font-size: 25px;
     font-weight: 600;
-    text-transform: uppercase;
     background: var(--white);
+    border: none;
+    border-radius: 10px;
+    padding: 1rem;
+    margin: 20px auto;
+    text-transform: uppercase;
     cursor: pointer;
 }
 
