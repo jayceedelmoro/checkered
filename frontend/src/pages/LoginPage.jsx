@@ -38,7 +38,6 @@ const LoginPage = () => {
         axios.post(`${ process.env.REACT_APP_SITE_LINK }/api/v1/users/login`, { username: state.username, password: state.password } ).then(dbResponse => {
         
             localStorage.setItem('userId', dbResponse.data.userId);
-            console.log(dbResponse.data)
                 
             toast.update(
                 loading, {
