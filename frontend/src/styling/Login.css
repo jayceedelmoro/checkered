@@ -1,0 +1,105 @@
+.page-container {
+    display: flex;
+    place-items: center;
+    height: 100vh;
+    background: linear-gradient(0deg, rgba( 252, 178, 0, 0.3 ), rgba( 252, 178, 0, 0.3 )), url('../assets/images/BACKGROUND.jpg');
+    background-position: center;
+    background-size: cover;
+}
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+    max-width: 70%;
+    padding: 2rem;
+    margin: 0 auto;
+}
+
+.container .column {
+    width: 100%;
+    padding: 50px;
+}
+
+.right.column {
+    background: var(--main-color);
+    border-radius: 25px;
+}
+
+h2 {
+    color: var(--main-color);
+    font-size: 90px;
+    margin: 0;
+    /* filter:url(#stroke-text-svg-filter); */
+    /* -webkit-text-stroke: 1px var(--white); */
+    /* -webkit-text-fill-color: var(--main-color); */
+    text-shadow: 0 0 20px var(--white), 0 0 20px var(--white), 0 0 20px var(--white), 0 0 20px var(--white);
+}
+
+/* ---------- START FORM ---------- */
+
+form * {
+    border: none;
+    border-radius: 10px;
+    padding: 1rem;
+    margin: 15px auto;
+}
+
+form p {
+    color: var(--white);
+    font-size: 22px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.confirmation_text,
+.loginLink {
+    font-size: 18px;
+    text-align: center;
+}
+
+.loginLink {
+    color: var(--white);
+    font-size: 20px;
+    text-decoration: underline;
+}
+
+.loginLink:hover {
+    cursor: pointer;
+}
+
+input {
+    width: 100%;
+    font-size: 20px;
+}
+
+button {
+    display: block;
+    min-width: 250px;
+    color: var(--main-color);
+    font-size: 25px;
+    font-weight: 600;
+    text-transform: uppercase;
+    background: var(--white);
+    cursor: pointer;
+}
+
+button[type=button] {
+    min-width: 160px;
+    font-size: 16px;
+}
+
+input:focus {
+    outline: none;
+}
+
+/* ---------- END FORM ---------- */
+
+
+/* ---------- START SUBMISSION ---------- */
+
+img {
+    width: 100%;
+    padding: 0 15%;
+}
+
+/* ---------- START SUBMISSION ---------- */
