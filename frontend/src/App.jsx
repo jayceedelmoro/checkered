@@ -8,12 +8,17 @@ import {
 import './App.css';
 
 import LoginPage from './pages/LoginPage';
+import Dashboard from './pages/Dashboard'
 
 const router = createBrowserRouter([
   {
     index: true,
     path: "/",
     element: <LoginPage />,
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
   },
 ]);
 
