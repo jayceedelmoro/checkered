@@ -9,7 +9,9 @@ import './App.css';
 
 import Layout from './routes/Layout';
 import LoginPage from './pages/LoginPage';
-import Dashboard from './pages/Dashboard'
+import Dashboard from './pages/Dashboard';
+
+import { getCurrentUser, getTasks } from './loaders/getData';
 
 const router = createBrowserRouter([
   {
@@ -20,11 +22,13 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
+    loader: getCurrentUser,
     children: [
       {
         index: true,
         path: "/dashboard",
-        element: <Dashboard />
+        element: <Dashboard />,
+        loader: getTasks,
       }
     ]
   },
