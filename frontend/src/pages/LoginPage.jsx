@@ -31,6 +31,44 @@ const LoginPage = () => {
     }
 
     const registerHandler = (e) => {
+        e.preventDefault()
+        
+        if (state.firstName && state.lastName && state.contactNumber && state.email && state.username && state.password) {
+            const loading = toast.loading("Please wait...")
+
+            axios.post(`${ process.env.REACT_APP_SITE_LINK }/api/v1/users/register`, { 
+                username: state.username,
+                password: state.password,
+                personalInfo: { 
+                    firstName: state.firstName,
+                    lastName: state.lastName,
+                    contactNumber: state.contactNumber,
+                    emailAddress: state.email
+                }
+            }).then(dbResponse => {
+                
+                toast.update(
+                    loading, {
+                        render: "Registration Completed",
+                        type: "success",
+                        isLoading: false,
+                        autoClose: 1000,
+
+                    }
+                );
+                setPageDisplay('ty');
+            })
+            .catch(error => {
+                toast.update(
+                    loading, {
+                        render: error.response.data.message,
+                        type: "error",
+                        isLoading: false,
+                        autoClose: 1000,
+                    }
+                );
+            })
+        }
     }
 
   return (
