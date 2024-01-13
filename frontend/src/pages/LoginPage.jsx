@@ -208,7 +208,6 @@ const LoginPage = () => {
                         <p class="confirmation_text">
                             You've signed up! <br />Please login using the button below.
                         </p>
-                        <br />
                         <button
                             type="button"
                             value='login'
