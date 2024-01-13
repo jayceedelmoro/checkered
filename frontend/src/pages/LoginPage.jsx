@@ -5,7 +5,7 @@ import axios from 'axios'
 
 import { toast } from 'react-toastify';
 
-import '../styling/Login.css'
+import '../styling/Login.scss'
 
 const LoginPage = () => {
 
@@ -103,7 +103,7 @@ const LoginPage = () => {
     }
 
   return (
-    <div className='page-container'>
+    <div className='login-container'>
         <div className="container">
             <div className='left column'>
                 <h2>
