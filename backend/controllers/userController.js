@@ -68,6 +68,27 @@ const userController = {
       return response.status(500).json({ message: "Internal server error" });
     }
   },
+
+  login: async (request, response) => {
+    try {
+      const { username, password } = request.body;
+      const user = await User.find({username});
+
+      const verifyPassword = await bcrypt.compare( password, user[0].password );
+
+      const status = user ? 200 : 404;
+      const message = user
+        ? verifyPassword
+          ? 'Login Success'
+          : 'Invalid Credentials'
+        : 'Username does not exist';
+
+      return response.status(status).json({ message });
+    } catch (error) {
+      console.error(error);
+      return response.status(500).json({ message: "Internal server error" });
+    }
+  },
 };
 
 module.exports = userController;

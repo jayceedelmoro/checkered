@@ -19,6 +19,10 @@ router.get('/:id', userController.getUserById);
 // api/v1/users/register
 router.post('/register', userController.addNewUser)
 
+// logs in the user
+// api/v1/users/login
+router.post('/login', userController.login)
+
 // PUT REQUESTS
 
 // change user info
