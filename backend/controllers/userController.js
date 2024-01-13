@@ -83,7 +83,7 @@ const userController = {
           : 'Invalid Credentials'
         : 'Username does not exist';
 
-      return response.status(status).json({ message, userDetails: verifyPassword ? user[0]._id : null });
+      return response.status(status).json({ message, userId: verifyPassword ? user[0]._id : null });
     } catch (error) {
       console.error(error);
       return response.status(500).json({ message: "Internal server error" });
