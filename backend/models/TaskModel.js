@@ -3,9 +3,9 @@ const mongoose = require("mongoose");
 const TaskSchema = new mongoose.Schema({
   taskName: String,
   description: String,
-  status: {
-    type: String,
-    default: 'In Progress'
+  isCompleted: {
+    type: Boolean,
+    default: false
   },
   ownerId: {
     type: mongoose.Schema.Types.ObjectId,
