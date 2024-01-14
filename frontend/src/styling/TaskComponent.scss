@@ -1,0 +1,41 @@
+.task-component {
+    height: 45vh;
+    background: var(--white);
+    border-radius: 5px;
+    box-shadow: 0 0 10px #D3D3D3;
+    padding: 20px;
+    margin: 30px 0;
+    overflow-y: auto;
+
+    h3 {
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: normal;
+    }
+
+    .task-list {
+        margin: 0 20px;
+    }
+
+    .tasks {
+        display: flex;
+        align-items: center;
+        background: #D3D3D3;
+        border-radius: 5px;
+        box-shadow: 0 0 5px #D3D3D3;
+        padding: 10px;
+        margin: 2px 0;
+    }
+
+    .tasks input {
+        margin-right: 10px;
+    }
+
+    .tasks p {
+        width: 100%;
+        text-overflow: ellipsis;
+    }
+
+    .edit-btn {
+        padding: 5px;
+    }
+}
