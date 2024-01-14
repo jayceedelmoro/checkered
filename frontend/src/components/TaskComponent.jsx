@@ -60,7 +60,7 @@ const TaskComponent = ({ title, taskData, setTaskData,setDataModal }) => {
                                 <p> { task.description } </p>
                                 <button
                                     className="edit-btn"
-                                    onClick={ setDataModal('Edit', 'Edit Task') }
+                                    onClick={ setDataModal('Edit', 'Edit Task', task._id) }
                                 >
                                     Edit
                                 </button>
