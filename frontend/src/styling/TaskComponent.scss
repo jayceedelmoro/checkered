@@ -16,14 +16,27 @@
     }
 
     .tasks {
-        display: grid;
-        grid-template-columns: 30px repeat(2, 1fr) 100px;
-        align-items: center;
         background: #D3D3D3;
         border-radius: 5px;
         box-shadow: 0 0 5px #D3D3D3;
-        padding: 10px;
         margin: 2px 0;
+
+        .list {
+            display: grid;
+            grid-template-columns: 30px repeat(2, 1fr) 100px;
+            align-items: center;
+            padding: 5px 10px;
+            transition: all 0.2s ease-out;
+
+            &:nth-child(even) {
+                background: #FFF;
+            }
+
+            &:hover {
+                background: #F0F0F0;
+                
+            }
+        }
 
         input {
             margin-right: 10px;
