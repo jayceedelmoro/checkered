@@ -49,7 +49,7 @@ const TaskComponent = ({ title, taskData, setTaskData,setDataModal }) => {
                 {
                     taskList.map( task => {
                         return(
-                            <>
+                            <div className='list'>
                                 <input
                                     key={ task._id }
                                     type="checkbox"
@@ -58,13 +58,24 @@ const TaskComponent = ({ title, taskData, setTaskData,setDataModal }) => {
                                 />
                                 <p> { task.name } </p>
                                 <p> { task.description } </p>
-                                <button
+
+                                {
+                                    task.isCompleted
+                                    ? null
+                                    : <button
                                     className="edit-btn"
                                     onClick={ setDataModal('Edit', 'Edit Task', task._id) }
+                                    >
+                                        Edit
+                                    </button>
+                                }
+                                <button
+                                    className="delete-btn"
+                                    onClick={ setDataModal('Delete', 'Delete Task', task._id) }
                                 >
-                                    Edit
+                                    Delete
                                 </button>
-                            </>
+                            </div>
                         )
                     })
                 }
