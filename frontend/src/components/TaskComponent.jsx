@@ -2,34 +2,34 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-import { useLoaderData, useRevalidator } from 'react-router-dom';
-
 import '../styling/TaskComponent.scss'
 
-const TaskComponent = ({ title }) => {
-    const taskData = useLoaderData();
+const TaskComponent = ({ title, taskData, setTaskData }) => {
 
-    const [render, rerender] = useState(true);
-
+    // Condition to check if the task is completed or not
     const completed = title == 'Completed' ? true : false;
 
+    // Filter the tasks
     const [ taskList, setTaskList ] = useState( taskData.data.message.filter((list) => list.isCompleted == completed));
 
     const checkToggle = taskId => event => {
         axios.put(`${ process.env.REACT_APP_SITE_LINK }/api/v1/tasks/${ taskId }`, {'isCompleted': event.target.checked }).then(() => {
+            
+            // Refresh the Task Data on the Dashboard
+            axios.get(`${ process.env.REACT_APP_SITE_LINK }/api/v1/tasks/`).then((dbResponse) => {
+                setTaskData(dbResponse);
+            });
 
-            rerender(!render)
             toast.success('Task Updated', {
                 autoClose: 1000,
             });
         });
     }
 
+    // Refresh the Task Data on the Component
     useEffect(() => {
-        axios.get(`${ process.env.REACT_APP_SITE_LINK }/api/v1/tasks/`).then((dbResponse) => {
-            setTaskList(dbResponse.data.message.filter((list) => list.isCompleted == completed));
-        });
-    }, [render])
+        setTaskList(taskData.data.message.filter((list) => list.isCompleted == completed))
+    }, [taskData])
 
   return (
     <div className="task-component">
