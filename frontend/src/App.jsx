@@ -2,8 +2,7 @@ import logo from './logo.svg';
 import {
   createBrowserRouter,
   RouterProvider,
-  Navigate,
-  Outlet
+  Navigate
 } from 'react-router-dom';
 import './App.css';
 
@@ -26,6 +25,9 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+        element: <Navigate to="/dashboard" replace />,
+      },
+      {
         path: "/dashboard",
         element: <Dashboard />,
         loader: getTasks,
