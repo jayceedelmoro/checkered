@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 
 import '../styling/TaskComponent.scss'
 
-const TaskComponent = ({ title, taskData, setTaskData }) => {
+const TaskComponent = ({ title, taskData, setTaskData,setDataModal }) => {
 
     // Condition to check if the task is completed or not
     const completed = title == 'Completed' ? true : false;
@@ -58,7 +58,12 @@ const TaskComponent = ({ title, taskData, setTaskData }) => {
                                 />
                                 <p> { task.name } </p>
                                 <p> { task.description } </p>
-                                <button className="edit-btn"> Edit </button>
+                                <button
+                                    className="edit-btn"
+                                    onClick={ setDataModal('Edit', 'Edit Task') }
+                                >
+                                    Edit
+                                </button>
                             </>
                         )
                     })
