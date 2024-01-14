@@ -24,15 +24,15 @@
         box-shadow: 0 0 5px #D3D3D3;
         padding: 10px;
         margin: 2px 0;
-    }
 
-    .tasks input {
-        margin-right: 10px;
-    }
+        input {
+            margin-right: 10px;
+        }
 
-    .tasks p {
-        width: 100%;
-        text-overflow: ellipsis;
+        p {
+            width: 100%;
+            text-overflow: ellipsis;
+        }
     }
 
     .edit-btn {
