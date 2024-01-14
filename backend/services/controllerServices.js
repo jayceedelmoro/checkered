@@ -87,7 +87,7 @@ const controllerServices = {
       const { id } = request.params;
       const modelName = model.collection.collectionName
 
-      const result = await model.findOneAndDelete(id);
+      const result = await model.findOneAndDelete({ _id: id });
 
       const status = result ? 200 : 404;
       const message = result
