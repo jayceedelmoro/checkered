@@ -43,7 +43,9 @@ const ModalComponent = (props) => {
 
         if(state.taskName && state.description) {
             const actionEndpoint = props.taskId
-            ? axios.put(`${ process.env.REACT_APP_SITE_LINK }/api/v1/tasks/${ props.taskId }`, {name: state.taskName, description: state.description}) //edit task
+            ? props.action == 'Delete'
+                ? axios.delete(`${ process.env.REACT_APP_SITE_LINK }/api/v1/tasks/${ props.taskId }`) //delete task
+                : axios.put(`${ process.env.REACT_APP_SITE_LINK }/api/v1/tasks/${ props.taskId }`, {name: state.taskName, description: state.description}) //edit task
             : axios.post(`${ process.env.REACT_APP_SITE_LINK }/api/v1/tasks/add`, {name: state.taskName, description: state.description, ownerId: userId }) //add task
             
             actionEndpoint.then((actionResponse) => {
