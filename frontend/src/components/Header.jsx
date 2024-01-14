@@ -13,7 +13,7 @@ const Header = () => {
             alt="logo"
             class="logo"
         />
-        <p class="username"> { userData.data.message.personalInfo.firstName }</p>
+        <p class="username"> { userData ? userData.data.message.personalInfo.firstName : null }</p>
     </div>
   )
 }
