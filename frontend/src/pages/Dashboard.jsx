@@ -61,6 +61,7 @@ const setDataModal = (action, actionTitle, taskId) => event => {
                 isModalOpen
                 ? <ModalComponent 
                     modalToggle = { modalToggle }
+                    setTaskData = { setTaskData }
                     title = { actionTitle }
                     action = { action }
                     taskId = { taskId }
