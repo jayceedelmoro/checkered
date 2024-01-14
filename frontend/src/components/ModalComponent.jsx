@@ -32,18 +32,73 @@ const ModalComponent = (props) => {
             }
         }
     }
+
+    const refreshTaskList = () => {
+
+    }
+
+    const actionHandler = (e) => {
+        e.preventDefault();
+
+        const userId = localStorage.getItem('userId');
+        
+        const loading = toast.loading("Please wait...");
+
+        if(state.taskName && state.description) {
+            const actionEndpoint = props.taskId
+            ? axios.put(`${ process.env.REACT_APP_SITE_LINK }/api/v1/tasks/${ props.taskId }`, {name: state.taskName, description: state.description})
+            : axios.post(`${ process.env.REACT_APP_SITE_LINK }/api/v1/tasks/add`, {name: state.taskName, description: state.description, ownerId: userId })
+            
+            actionEndpoint.then((dbResponse) => {
+            
+                // Refresh the Task Data on the Dashboard
+                axios.get(`${ process.env.REACT_APP_SITE_LINK }/api/v1/tasks/user/${ userId }`).then((dbResponse) => {
+                    props.setTaskData(dbResponse);
+                });
+
+                toast.update(
+                    loading, {
+                        render: dbResponse.data.message,
+                        type: "success",
+                        isLoading: false,
+                        autoClose: 1000,
+                    }
+                );
+
+                props.modalToggle();
+            })
+            .catch(error => {
+                toast.update(
+                    loading, {
+                        render: error.response.data.message,
+                        type: "error",
+                        isLoading: false,
+                        autoClose: 1000,
+                    }
+                );
+            })
+        }
+        else {
+            toast.update(
+                loading, {
+                    render: 'All fields required',
+                    type: "error",
+                    isLoading: false,
+                    autoClose: 1000,
+                }
+            );
+        }
+    }
     
     useEffect(() => {
         if(props.taskId) {
-            axios.put(`${ process.env.REACT_APP_SITE_LINK }/api/v1/tasks/${ props.taskId }`).then((dbResponse) => {
+            axios.get(`${ process.env.REACT_APP_SITE_LINK }/api/v1/tasks/${ props.taskId }`).then((dbResponse) => {
 
                 setState({
                     ...state,
-                    taskName: dbResponse.data.message.taskName,
+                    taskName: dbResponse.data.message.name,
                     description: dbResponse.data.message.description
                 });
-
-                console.log(state)
             });
         }
     }, [])
@@ -79,11 +134,14 @@ const ModalComponent = (props) => {
                     <div className="btn-container">
                         <button
                             type='button'
+                            className='cancel-btn'
+                            onClick={ props.modalToggle }
                         >
                             Cancel
                         </button>
                         <button
                             type='submit'
+                            onClick={ actionHandler }
                         >
                             { props.action }
                         </button>
