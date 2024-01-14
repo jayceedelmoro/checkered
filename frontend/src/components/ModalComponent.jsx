@@ -10,7 +10,6 @@ import '../styling/ModalComponent.scss'
 const ModalComponent = (props) => {
 
     const [ state, setState ] = useState({});
-    const { value } = state;
 
     //general function to change value of inputs
     const changeText = (e) => {
@@ -22,6 +21,7 @@ const ModalComponent = (props) => {
       });
     }
 
+    // Toggles Modal
     const hideModal = (event) => {
         let modalContainer = document.querySelector('.modal-container');
         let modalClose = document.querySelector('.modal-close');
@@ -33,10 +33,7 @@ const ModalComponent = (props) => {
         }
     }
 
-    const refreshTaskList = () => {
-
-    }
-
+    // Action Button Function
     const actionHandler = (e) => {
         e.preventDefault();
 
@@ -46,8 +43,8 @@ const ModalComponent = (props) => {
 
         if(state.taskName && state.description) {
             const actionEndpoint = props.taskId
-            ? axios.put(`${ process.env.REACT_APP_SITE_LINK }/api/v1/tasks/${ props.taskId }`, {name: state.taskName, description: state.description})
-            : axios.post(`${ process.env.REACT_APP_SITE_LINK }/api/v1/tasks/add`, {name: state.taskName, description: state.description, ownerId: userId })
+            ? axios.put(`${ process.env.REACT_APP_SITE_LINK }/api/v1/tasks/${ props.taskId }`, {name: state.taskName, description: state.description}) //edit task
+            : axios.post(`${ process.env.REACT_APP_SITE_LINK }/api/v1/tasks/add`, {name: state.taskName, description: state.description, ownerId: userId }) //add task
             
             actionEndpoint.then((actionResponse) => {
             
@@ -121,6 +118,7 @@ const ModalComponent = (props) => {
                         value={ state.taskName }
                         placeholder="Task Name"
                         onChange={ changeText }
+                        disabled = { props.action == 'Delete' ? true : false }
                     />
 
                     <textarea
@@ -129,6 +127,7 @@ const ModalComponent = (props) => {
                         value={ state.description }
                         placeholder="Please Add Description"
                         onChange={ changeText }
+                        disabled = { props.action == 'Delete' ? true : false }
                     />
                     
                     <div className="btn-container">
@@ -141,6 +140,7 @@ const ModalComponent = (props) => {
                         </button>
                         <button
                             type='submit'
+                            className={ props.action == 'Delete' ? 'delete-btn' : null }
                             onClick={ actionHandler }
                         >
                             { props.action }
