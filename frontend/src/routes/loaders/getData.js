@@ -9,5 +9,6 @@ export const getCurrentUser = () => {
 }
 
 export const getTasks = () => {
-  return axios.get(`${templateURL}/api/v1/tasks/`);
+  const userId = localStorage.getItem( 'userId' );
+  return axios.get(`${templateURL}/api/v1/tasks/user/${ userId }`);
 }
