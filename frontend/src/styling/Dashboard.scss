@@ -1,0 +1,28 @@
+.dashboard-container {
+    height: 100%;
+    background: #F9F9F9;
+    padding: 50px 100px;
+    margin: auto;
+
+    .controls {
+        display: flex;
+    }
+
+    .controls > * {
+        width: 100%;
+    }
+
+    .controls .add-btn-container {
+        text-align: right;
+    }
+
+    .controls button {
+        color: var(--white);
+        font-size: 18px;
+        background: var(--main-color);
+        border: none;
+        border-radius: 5px;
+        padding: 15px 30px;
+        transition: all 0.3s ease-out;
+    }
+}
