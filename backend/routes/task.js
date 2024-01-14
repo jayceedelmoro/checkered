@@ -9,6 +9,10 @@ const taskController = require('../controllers/taskController');
 // api/v1/tasks/
 router.get('/', taskController.getAllTask);
 
+// get tasks of a user
+// api/v1/tasks/user/:id
+router.get('/user/:id', taskController.getTaskByUserId);
+
 // get a specific task
 // api/v1/tasks/:id
 router.get('/:id', taskController.getTaskById);

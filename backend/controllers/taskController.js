@@ -29,6 +29,24 @@ const userController = {
       return response.status(500).json({ message: "Internal server error" });
     }
   },
+
+  getTaskByUserId: async (request, response) => {
+    try {
+      const userId = request.params.id;
+      const result = await Task.find({ ownerId: userId });
+      console.log( userId )
+
+      const status = result ? 200 : 204;
+      const message = result
+        ? result
+        : `${ toTitleCase(modelName) } List Empty`;
+
+      return response.status(status).json({ message: message });
+    } catch (error) {
+      console.error(error);
+      return response.status(500).json({ message: "Internal server error" });
+    }
+  },
 };
 
 module.exports = userController;
