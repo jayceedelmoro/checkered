@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 import { CloseCircleOutline } from '@ricons/ionicons5';
 import { Icon } from '@ricons/utils'
@@ -31,6 +32,21 @@ const ModalComponent = (props) => {
             }
         }
     }
+    
+    useEffect(() => {
+        if(props.taskId) {
+            axios.put(`${ process.env.REACT_APP_SITE_LINK }/api/v1/tasks/${ props.taskId }`).then((dbResponse) => {
+
+                setState({
+                    ...state,
+                    taskName: dbResponse.data.message.taskName,
+                    description: dbResponse.data.message.description
+                });
+
+                console.log(state)
+            });
+        }
+    }, [])
 
   return (
     <div class="modal-overlay" onClick={ hideModal }>
@@ -47,7 +63,7 @@ const ModalComponent = (props) => {
                     <input
                         type = 'text'
                         name='taskName'
-                        value={ value }
+                        value={ state.taskName }
                         placeholder="Task Name"
                         onChange={ changeText }
                     />
@@ -55,7 +71,7 @@ const ModalComponent = (props) => {
                     <textarea
                         type = 'text'
                         name='description'
-                        value={ value }
+                        value={ state.description }
                         placeholder="Please Add Description"
                         onChange={ changeText }
                     />
