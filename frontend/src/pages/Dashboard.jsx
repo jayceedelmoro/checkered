@@ -13,14 +13,16 @@ const [ taskData, setTaskData ] = useState( useLoaderData() );
 const [ isModalOpen, setIsModelOpen] = useState(false);
 const [ action, setAction] = useState('');
 const [ actionTitle, setActionTitle] = useState('');
+const [ taskId, setTaskId] = useState('');
 
 const modalToggle = () => {
     setIsModelOpen(!isModalOpen);
 }
 
-const setDataModal = (action, actionTitle) => event => {
+const setDataModal = (action, actionTitle, taskId) => event => {
         setAction(action);
         setActionTitle(actionTitle);
+        setTaskId(taskId);
         modalToggle()
 }
 
@@ -61,6 +63,7 @@ const setDataModal = (action, actionTitle) => event => {
                     modalToggle = { modalToggle }
                     title = { actionTitle }
                     action = { action }
+                    taskId = { taskId }
                   />
                 : null
             }
