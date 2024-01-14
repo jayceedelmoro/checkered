@@ -11,7 +11,7 @@ import Layout from './routes/Layout';
 import LoginPage from './pages/LoginPage';
 import Dashboard from './pages/Dashboard';
 
-import { getCurrentUser, getTasks } from './loaders/getData';
+import { getCurrentUser, getTasks } from './routes/loaders/getData';
 
 const router = createBrowserRouter([
   {
