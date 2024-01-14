@@ -25,9 +25,4 @@
             transition: all 0.3s ease-out;
         }
     }
-
-    .task-header {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-    }
 }

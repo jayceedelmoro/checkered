@@ -40,7 +40,12 @@ const TaskComponent = ({ title, taskData, setTaskData }) => {
         </div>
 
         <div className='task-list'>
+            <div className="task-header">
+                <h4 className='title'> Title </h4>
+                <h4> Description </h4>
+            </div>
             <div className="tasks">
+
                 {
                     taskList.map( task => {
                         return(

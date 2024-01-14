@@ -17,7 +17,8 @@
     }
 
     .tasks {
-        display: flex;
+        display: grid;
+        grid-template-columns: 30px repeat(2, 1fr) 100px;
         align-items: center;
         background: #D3D3D3;
         border-radius: 5px;
@@ -37,5 +38,14 @@
 
     .edit-btn {
         padding: 5px;
+    }
+
+    .task-header {
+        display: grid;
+        grid-template-columns: 40px repeat(2, 1fr) 100px;
+
+        .title {
+            grid-column: 2 / 2;
+        }
     }
 }

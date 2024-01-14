@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useLoaderData } from 'react-router-dom';
 
 import TaskComponent from '../components/TaskComponent';
@@ -7,7 +7,7 @@ import '../styling/Dashboard.scss'
 
 const Dashboard = () => {
     
-const taskData = useLoaderData();
+const [ taskData, setTaskData ] = useState( useLoaderData() );
 
   return (
     <>
@@ -17,7 +17,7 @@ const taskData = useLoaderData();
                 <div class="add-btn-container">
                     <button
                         class="add-task"
-                        onClick="modalToggle"
+                        onClick={"modalToggle"}
                     >
                         Add Task
                     </button>
@@ -25,10 +25,18 @@ const taskData = useLoaderData();
             </div>
 
             {/* In Progress Tasks */}
-            <TaskComponent title = 'In Progress'/>
+            <TaskComponent
+                title = 'In Progress'
+                taskData = { taskData }
+                setTaskData = { setTaskData }
+            />
 
             {/* Completed */}
-            <TaskComponent title = 'Completed'/>
+            <TaskComponent
+                title = 'Completed'
+                taskData = { taskData }
+                setTaskData = { setTaskData }
+            />
         </div>
     </>
   )
