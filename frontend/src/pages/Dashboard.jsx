@@ -11,9 +11,17 @@ const Dashboard = () => {
 const [ taskData, setTaskData ] = useState( useLoaderData() );
 
 const [ isModalOpen, setIsModelOpen] = useState(false);
+const [ action, setAction] = useState('');
+const [ actionTitle, setActionTitle] = useState('');
 
 const modalToggle = () => {
     setIsModelOpen(!isModalOpen);
+}
+
+const setDataModal = (action, actionTitle) => event => {
+        setAction(action);
+        setActionTitle(actionTitle);
+        modalToggle()
 }
 
   return (
@@ -24,7 +32,7 @@ const modalToggle = () => {
                 <div class="add-btn-container">
                     <button
                         class="add-task"
-                        onClick={ modalToggle }
+                        onClick={ setDataModal('Add', 'Add Task') }
                     >
                         Add Task
                     </button>
@@ -35,6 +43,7 @@ const modalToggle = () => {
             <TaskComponent
                 title = 'In Progress'
                 taskData = { taskData }
+                setDataModal = { setDataModal }
                 setTaskData = { setTaskData }
             />
 
@@ -42,12 +51,17 @@ const modalToggle = () => {
             <TaskComponent
                 title = 'Completed'
                 taskData = { taskData }
+                setDataModal = { setDataModal }
                 setTaskData = { setTaskData }
             />
             
             {
                 isModalOpen
-                ? <ModalComponent modalToggle = { modalToggle }/>
+                ? <ModalComponent 
+                    modalToggle = { modalToggle }
+                    title = { actionTitle }
+                    action = { action }
+                  />
                 : null
             }
         </div>
