@@ -16,7 +16,7 @@ const TaskComponent = ({ title, taskData, setTaskData }) => {
         axios.put(`${ process.env.REACT_APP_SITE_LINK }/api/v1/tasks/${ taskId }`, {'isCompleted': event.target.checked }).then(() => {
             
             // Refresh the Task Data on the Dashboard
-            axios.get(`${ process.env.REACT_APP_SITE_LINK }/api/v1/tasks/`).then((dbResponse) => {
+            axios.get(`${ process.env.REACT_APP_SITE_LINK }/api/v1/tasks/user/${ localStorage.getItem('userId') }`).then((dbResponse) => {
                 setTaskData(dbResponse);
             });
 
